@@ -4,6 +4,7 @@ In software development, the usual solution for this situation is to define patt
 
 - Enterprise Integration Patterns: http://www.enterpriseintegrationpatterns.com/patterns/messaging/
 - GoF Software Design Patterns: https://en.wikipedia.org/wiki/Design_Patterns
+
 The way to develop software has changed after publishing of these patterns, because a developer is reading the patterns and understands, where they can be applied. The patterns are defined in a composable way, i.e. it is possible to take one pattern and combine it with another one. The consequence is that the developer does not have to solve all problems again and again. He can simply use well-defined patterns, check, if it is applicable, and can use it in development.
 
 # Pattern approach
