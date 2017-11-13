@@ -38,18 +38,18 @@ Sources are available at: https://github.wdf.sap.corp/cloud-native-dev/resilienc
 The patterns can be grouped according to the focus areas of resilience:
 
 - Failure Unit:
-  - Unit Isolation
+  - Unit Isolation (https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/AppService-UnitIsolation)
 - Data Handling:
-  - Temporary Replication
+  - Temporary Replication (https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/AppService-Replication)
   - Temporary Data
 - Control Circuit:
-  - Quarantine
-  - Supervisor
+  - Quarantine (https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/AppService-Quarantine)
+  - Supervisor (https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/Supervisor)
 - Rate Limitation:
-  - Shed load
-  - Bounded Queues
+  - Shed load (https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/AppService-RateLimitation)
+  - Bounded Queues (https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/AppService)
 - Dependency Management
-  - Circuit Breaker
-  - Retry 
-  - Timeout 
-  - Watchdog
+  - Circuit Breaker (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/CircuitBreaker.md)
+  - Retry (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Retry.md)
+  - Timeout (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Timeout.md)
+  - Watchdog (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Watchdog.md)
