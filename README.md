@@ -31,7 +31,7 @@ The patterns are explained based on an old-style classic application (database f
 
 ![Overview of example application](https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Images/OverviewRefApp.png)
 
-Sources are available at: https://github.wdf.sap.corp/D028547/ResilienceApp/tree/master/AppService
+Sources are available at: https://github.wdf.sap.corp/cloud-native-dev/resilience/tree/master/AppServiceSimple
 
 # Available patterns
 
