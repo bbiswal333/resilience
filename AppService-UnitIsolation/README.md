@@ -1,4 +1,5 @@
 The pattern for unit isolation is focusing on one of the core decisions of resilience: the design of the failure unit. A failure unit is the entity of an application that can fail without impacting the overall availability of the whole application. During the design process of the application, it is crucial to define a split of the functionality to avoid the monolithic architecture design.
+
 The overall problem for unit isolation is to find a good balance of the isolated entities. Nowadays, different methodologies like domain-driven design are applied to define the cut of units, but in the moment it looks more like an art than a science, i.e. it depends on many circumstances and boundary conditions. Therefore, it is a clear recommendation to assess multiple options of isolation and not apply the pattern everywhere.
 
 # Action
@@ -21,6 +22,7 @@ Separation of some functionality can only be done, if...
 
 - ...task can be separated in an isolated way. This is usually the case for compute-intensive operations or non-mandatory information.
 - ...the size of the data that is required for the computation is not too huge, i.e. overloading the network.
+
 An anti-pattern in this context is to simply pass a reference to an external storage that contains the huge data set, because passing such references implies coupling on data level. It can be done, but to isolate the compute functionality, but couple on data level does only half of the job.
 
 # Principles
@@ -121,5 +123,3 @@ private class ExecuteRequest implements Callable<Double> {
 ```
 
 The call is separated to a Java-future to allow interruption of the call (see timeout parameter) and the whole call is wrapped into a retry-loop to allow calls. It is also important to notice what happens in an exceptional case: The URL is changed, because the call should go to another process. This implies that at least two instances of the isolated process for discount calculation are running.
-
-Sources are available at: https://github.wdf.sap.corp/D028547/ResilienceApp/tree/master/AppService-UnitIsolation
