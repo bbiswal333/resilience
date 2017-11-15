@@ -53,3 +53,25 @@ The patterns can be grouped according to the focus areas of resilience:
   - Retry (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Retry.md)
   - Timeout (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Timeout.md)
   - Watchdog (https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Watchdog.md)
+  
+# Composition
+
+The composition is a crucial concept applying the patterns. So far, the patterns are explained as isolated guidelines, but the real power of patterns is that they can be apply to the architecture of a system, if they are applicable. The decision to apply a pattern depends on the use case. The following diagram shows an example of a system architecture applying all of the patterns.
+
+The application is focused on handling requests, putting these requests to a queue, and worker nodes can pick the requests up to handle them.
+
+To explain, why the patterns were applied:
+
+- Unit Isolation:
+  - API Server is separated, because the acceptance of requests shall be handled independent from execution of the requests.
+  - Compute is separated, because computation requires many resources and can potentially crash. Therefore it is separated from the worker node handle it in an isolated way.
+- Temporary Replication:
+  - A temporary storage is introduced to handle the downtime of the primary storage. The worker node can continue working, even if the primary storage is down.
+- Dependeny management: Timeout, Retry, Circuit Breaker
+  - The patterns for dependency management are used to handle the availability of the isolated units. These patterns are usually applied together.
+- Shed Load:
+  - The API Server protects itself by defining limits for the number of incoming requests.
+- Bounded Queues:
+  - The requests are put to a queue to handle the load of the system by worker nodes picking up the number of requests that they can handle.
+- Supervisor:
+  - The supervisor is not implemented by the application itself. The platform defines a controller to check the availability of the individual nodes of the system.
