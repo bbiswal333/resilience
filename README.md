@@ -58,6 +58,8 @@ The patterns can be grouped according to the focus areas of resilience:
 
 The composition is a crucial concept applying the patterns. So far, the patterns are explained as isolated guidelines, but the real power of patterns is that they can be apply to the architecture of a system, if they are applicable. The decision to apply a pattern depends on the use case. The following diagram shows an example of a system architecture applying all of the patterns.
 
+![Applying of patterns in bigger example](https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Images/RefExample.png)
+
 The application is focused on handling requests, putting these requests to a queue, and worker nodes can pick the requests up to handle them.
 
 To explain, why the patterns were applied:
