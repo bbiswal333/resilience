@@ -1,8 +1,9 @@
+# Pattern: Unit Isolation
 The pattern for unit isolation is focusing on one of the core decisions of resilience: the design of the failure unit. A failure unit is the entity of an application that can fail without impacting the overall availability of the whole application. During the design process of the application, it is crucial to define a split of the functionality to avoid the monolithic architecture design.
 
 The overall problem for unit isolation is to find a good balance of the isolated entities. Nowadays, different methodologies like domain-driven design are applied to define the cut of units, but in the moment it looks more like an art than a science, i.e. it depends on many circumstances and boundary conditions. Therefore, it is a clear recommendation to assess multiple options of isolation and not apply the pattern everywhere.
 
-# Action
+## Action
 
 The compute units are split during the failure unit design, because each run of a compute unit can crash and bring down the whole application. If the application is implemented as one monolith one action can influence all others.
 As a consequence, the communication to compute unit is remote, and if the synchronous call crashes, the request on the caller side gets an exception. So, the caller can handle the error situation.
@@ -16,7 +17,7 @@ The application looks like this after applying the pattern:
 
 ![Example application after isolation](https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Images/UnitIsolationRefApp.png)
 
-# Applicable
+## Applicable
 
 Separation of some functionality can only be done, if...
 
@@ -25,7 +26,7 @@ Separation of some functionality can only be done, if...
 
 An anti-pattern in this context is to simply pass a reference to an external storage that contains the huge data set, because passing such references implies coupling on data level. It can be done, but to isolate the compute functionality, but couple on data level does only half of the job.
 
-# Principles
+## Principles
 
 Out of the four principles of resilience the following are applied:
 
@@ -33,14 +34,14 @@ Out of the four principles of resilience the following are applied:
 - Decoupling: The isolated compute unit defines an interface, and this interface is used for decoupling from the remaining parts.
 - Redundancy: Usually unit isolation is applied to allow failover to a secondary runtime instance.
 
-# Used Patterns
+## Used Patterns
 
 The following patterns are used:
 
 - Retry: Each call to a compute unit has to be wrapped by a retry logic.
 - Timeout: Each call has to define a timeout, otherwise the remaining parts of the application could be blocked forever.
 
-# Implementation
+## Implementation
 
 The application contains business logic to handle orders:
 
