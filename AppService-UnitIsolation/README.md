@@ -26,20 +26,25 @@ Separation of some functionality can only be done, if...
 
 An anti-pattern in this context is to simply pass a reference to an external storage that contains the huge data set, because passing such references implies coupling on data level. It can be done, but to isolate the compute functionality, but couple on data level does only half of the job.
 
-## Principles
+## Principles applied
 
 Out of the four principles of resilience the following are applied:
 
-- Isolation: The compute unit is isolated from the remaining parts of the application. There is a clear boundary between the units.
-- Decoupling: The isolated compute unit defines an interface, and this interface is used for decoupling from the remaining parts.
-- Redundancy: Usually unit isolation is applied to allow failover to a secondary runtime instance.
+- **Isolation**   
+  The compute unit is isolated from the remaining parts of the application. There is a clear boundary between the units.
+- **Decoupling**  
+  The isolated compute unit defines an interface, and this interface is used for decoupling from the remaining parts.
+- **Redundancy**  
+  Usually unit isolation is applied to allow failover to a secondary runtime instance.
 
 ## Used Patterns
 
 The following patterns are used:
 
-- Retry: Each call to a compute unit has to be wrapped by a retry logic.
-- Timeout: Each call has to define a timeout, otherwise the remaining parts of the application could be blocked forever.
+- **Retry**  
+  Each call to a compute unit has to be wrapped by a retry logic.
+- **Timeout**  
+  Each call has to define a timeout, otherwise the remaining parts of the application could be blocked forever.
 
 ## Implementation
 
