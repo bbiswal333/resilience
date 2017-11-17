@@ -52,7 +52,10 @@ private void process(OrderItem order) {
   Long customerId = order.getCustomerId();
   Product product = handler.productRepository.findOne(productId);
   Customer customer = handler.customerRepository.findOne(customerId);
-  Double discount = DiscountCalculator.discountCalculator(productId, customerId);
+ 
+  // compute-intensive call
+  Double discount = getDiscount(productId, customerId);
+  
   Double price = product.getPrice();
   customer.setAmount(customer.getAmount() - price * discount);
   product.setQuantity(product.getQuantity() - 1);
@@ -62,13 +65,13 @@ private void process(OrderItem order) {
   successfulItem.setProductId(order.getProductId());
   successfulItem.setCustomerId(order.getCustomerId());
   successfulItem.setPrice(price);
-  successfulItem.setDiscount(discount);
+  successfulItem.setDiscount(discount);  
   handler.successfulOrderRepository.save(successfulItem);
   handler.orderRepository.delete(order);
 }
 ```
 
-All database operations are running in a transaction (see annotation @Transactional). The important statement is the call to the compute-intensive functionality (highlighted).
+All database operations are running in a transaction (see annotation @Transactional). The important statement is the call to the compute-intensive functionality (`getDiscount()`).
 
 The isolation of the compute unit is now done in a way that the functionality is separated to another process. With modern development frameworks it is not such a big deal to extract the logic to a separate process, but the challenge is to handle the call in the appropriate way.
 
