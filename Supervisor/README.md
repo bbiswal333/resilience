@@ -1,7 +1,7 @@
 # Pattern: Supervisor
 
 The pattern of supervisor is used to control the execution of failure units. Sometimes, it can happen that the unit of work cannot recover on its own, because the unit simply repeats the task again and again. This could potentially lead to endless cycles. Now, an external entity can get that task to control the behavior and execution of the failure unit. If something unexpected happens, the supervisor becomes active and recovers the runtime by restarting, rescheduling the work or any other appropriate action.
-Supervisor is a concept that was developed even some time ago. The programming language Erlang, created 1987, made it part of the core key words of the language. The idea is to define a language that is exactly meant to provide an enviroment for high-available systems. Other languages, like Scala, have taken over the concepts, called actors, to provide exactly the same advantages.
+Supervisor is a concept that was developed even some time ago. The programming language Erlang, created 1987, made it part of the core key words of the language. The idea is to define a language that is exactly meant to provide an environment for high-available systems. Other languages, like Scala, have taken over the concepts, called actors, to provide exactly the same advantages.
 
 ## Action
 
