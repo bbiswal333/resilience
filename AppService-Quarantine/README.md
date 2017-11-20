@@ -1,7 +1,9 @@
 # Pattern: Quarantine 
 
 The pattern of quarantine can be used to isolate the execute of a request to a more controlled environment. If the usual execution is creating problems, then it can be put to a dedicated execution.
-Action
+
+
+## Action
 
 The compute unit that can create problems shall be isolated. Usual execution is done inside the usual boundary conditions, but if a dedicated instance is identified, the instance for computation is delegated to a fallback implementation with dedicated resources.
 
