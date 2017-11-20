@@ -1,25 +1,27 @@
+# Pattern: Watchdog
+
 The resilience pattern of a watch dog focuses on the behavior of a second component. The component that is called a watch dog, monitors the behavior of the other component that is under observation. If some predefined metrics get values that are beyond a specific threshold, the watch dog component can trigger appropriate actions.
 
 The pattern is connected to the supervisor pattern, but the supervisor defines that the components under supervision are under control of the supervisor from lifecycle point of view, i.e. the supervisor can start or stop the supervised components. The watch dog is just getting some data from the other components.
 
-# Action
+## Action
 
 Metrics for a component are defined and externally accessable. Another component, the watch dog, can get the values.
 
-# Applicable
+## Applicable
 
 Watch dog can only be done, if...
 
 - ...values for metrics are externalized.
 - ...specific thresholds and actions are defined that has to be taken, once the thresholds are reached.
 
-# Principles
+## Principles
 
 Out of the four principles of resilience the following are applied:
 
 - Isolation: The watch dog component is controlling the isolated component.
 
-# Implementation
+## Implementation
 
 The supervisor component contains also some watch dog functionality:
 
