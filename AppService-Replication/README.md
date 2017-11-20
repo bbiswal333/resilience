@@ -1,3 +1,5 @@
+# Pattern: Temporary Replication
+
 The resilience pattern for a temporary replication is solving the issue of inheriting the availability of a used storage technology. The underlying problem is that an application can never be better regarding availability, if the application is coupled to the storage, i.e. each call to the application results in calls to the storage and if the storage is not available, the application cannot work. For this purpose, another storage technology can make sense.
 
 Temporary replication focuses on one of the difficult problems of resilient applications, because the data consistency has to be handled. In monolithic software architectures, the server was using a relational database and followed the ACID paradigm, but if the server load grows beyond a specific limit, it is not possible for the database to handle the load anymore. The load has to be scaled out, and the CAP theorem becomes important.
@@ -13,7 +15,7 @@ Introducing a temporary storage to mitigate the downtime of the primary storage 
 
 As a general recommendation, it has to be assessed what qualities the system has to provide under the given boundary conditions. Again, it is an assessment that can only be done case by case.
 
-# Action
+## Action
 
 There is a fallback storage to persist information and replicate later. For this purpose, a circuit breaker is used and the fallback implementation redirects to the temporary storage.
 
@@ -25,34 +27,34 @@ The application is changed in the following way.
 
 ![Replication in example application](https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Images/TemporaryReplicationRefApp.png)
 
-# Applicable
+## Applicable
 
 Using a secondary storage is an option, if...
 
 - ...persisting data is not required for later business logic steps (storage can be deferred).
 - ...temporary storage does not loss data (potentially it could be allowed to lose data, business decision).
 
-# Principles
+## Principles
 
 Out of the four principles of resilience the following are applied:
 
 - Fallback: If the primary storage is not available, a secondary storage is used as fallback.
 - Redundancy: The secondary storage is a redundant place to store data.
 
-# Used Patterns
+## Used Patterns
 
 The following patterns are used:
 
 - Circuit breaker: If the connection to the primary storage is not available, the circuit gets open and will only be closed, once it is available again.
 
-# Implementation
+## Implementation
 
 The implementation of the resilience pattern involves two major pieces:
 
 - Fallback to temporary storage
 - Replication to primary storage
 
-# Fallback
+## Fallback
 
 The call to the primary storage has to be wrapped to allow the fallback implementation. This is done via a dedicated instance of the call request.
 
@@ -105,7 +107,7 @@ private class SaveRequest extends HystrixCommand<String> {
 
 The Hystrix framework provides a good foundation to allow a fallback implementation and timeout behavior. The fallback implementation is simply adding the order request to an in-memory list for later replication (this is not a reliable storage overall, because if the process crashes, all data is gone).
 
-# Replication
+## Replication
 
 The data in the secondary storage has also to be replicated to the primary storage. A separate thread is used for that.
 
