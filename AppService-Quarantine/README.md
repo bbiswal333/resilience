@@ -1,3 +1,5 @@
+# Pattern: Quarantine 
+
 The pattern of quarantine can be used to isolate the execute of a request to a more controlled environment. If the usual execution is creating problems, then it can be put to a dedicated execution.
 Action
 
@@ -9,7 +11,7 @@ The application after applying the pattern looks like this:
 
 ![Quarantine in example application](https://github.wdf.sap.corp/cloud-native-dev/resilience/blob/master/Images/QuarantineRefApp.png)
 
-# Applicable
+## Applicable
 
 Quarantine can only be done, if...
 
@@ -25,13 +27,13 @@ Out of the four principles of resilience the following are applied:
 - Fallback: The implementation of the compute unit has to be available in a fallback implementation to push execution to it.
 - Loose coupling: The compute unit provides a clear interface to allow easy execution.
 
-# Used Patterns
+## Used Patterns
 
 The following patterns are used:
 
 - Unit isolation: The fallback implementation uses a separated unit to compute.
 
-# Implementation
+## Implementation
 
 Only the implementation of the command to trigger the computation is changed. The command is using the in-process execution to get the result, only in case there is an exception, the fallback to call an external service is used.
 
