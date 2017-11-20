@@ -46,7 +46,7 @@ The patterns can be grouped according to the focus areas of resilience:
 | Data Handling   | [**Temporary Replication**](/AppService-Replication)      | A temporary storage is introduced to handle the downtime of the primary storage. The worker node can continue working, even if the primary storage is down |   
 |                 | **Temporary Data**                                        |                              |  
 | Control Circuit | [**Quarantine**](/AppService-Quarantine)                  |                              | 
-|                 | [**Supervisor**](/AppService-Supervisor)                  | The supervisor is not implemented by the application itself. The platform defines a controller to check the availability of the individual nodes of the system. |   
+|                 | [**Supervisor**](/Supervisor)                  | The supervisor is not implemented by the application itself. The platform defines a controller to check the availability of the individual nodes of the system. |   
 | Rate Limitation | [**Shed load**](/AppService-RateLimitation)               | The API Server protects itself by defining limits for the number of incoming requests. | 
 |                 | [**Bounded Queues**](/AppService)                         | The requests are put to a queue to handle the load of the system by worker nodes picking up the number of requests that they can handle. |   
 | Dependency Management | [**Circuit Breaker**](/CircuitBreaker.md)           | The patterns for dependency management are used to handle the availability of the isolated units. These patterns are usually applied together |  
